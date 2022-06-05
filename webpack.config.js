@@ -5,6 +5,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
           MiniCSSExtractPlugin.loader,
@@ -15,7 +30,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // template: './src/index.html',
+      template: './src/index.html',
+      filename: './index.html',
     }),
     new MiniCSSExtractPlugin(),
   ],
